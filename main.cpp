@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 // End Includes
 
@@ -32,6 +33,7 @@ int main()
     
     bool run = true;
     string userInput;
+    const char * inputToChar;
     
     // variables Declaration ends here
 
@@ -43,6 +45,7 @@ int main()
         prompt();
         // then get the input
         getline(cin, userInput);
+
         // check for exit condition
         if ( userInput == "exit") 
         {
@@ -53,10 +56,18 @@ int main()
         {
             // if youre here the user needs help
             help();
+        } else 
+        {
+            // If youre here then you have work to do.
+            inputToChar = userInput.c_str();
+            system( inputToChar );
+            
+
         }
 
         // clean up the string for the next loop
         userInput = "";
+
     }
 
     return 0;
