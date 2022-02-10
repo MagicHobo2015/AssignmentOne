@@ -3,7 +3,8 @@
 *   Author(s):                                                                               *
 *       Joshua Land,                                                                         *
 *                                                                                            *
-*   Description: This is a simple command line interpreter, that gets and runs user commands.*
+*   Description: This is a simple command line interpreter, that gets and runs user commands.
+*
 *                                                                                            *
 *********************************************************************************************/
 
@@ -14,6 +15,6 @@ using std::cout; using std::getline; using std::endl;
 
 int main() 
 {
-    cout << " Hello World!" << endl;
+    cout << " Hello World!, just checking make file" << endl;
     return 0;
 }
