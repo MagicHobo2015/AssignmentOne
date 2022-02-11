@@ -1,5 +1,8 @@
 Welcome to Assignment one, Group 2
 
+*******************************
+
+
 The instructions for this assignment:
 
 Assignment 1 - Command Line Interpreter

@@ -56,7 +56,7 @@ int main()
         getline(cin, userInput);
 
         // Check for exit condition
-        if (userInput == "exit")
+        if ( userInput == "exit" || userInput == "quit" )
         {
             // Clean up happens here...
 
