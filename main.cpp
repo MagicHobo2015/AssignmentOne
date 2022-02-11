@@ -1,7 +1,7 @@
 /*********************************************************************************************
 *               Simple Console App.                                                          *
 *   Author(s):                                                                               *
-*       Joshua Land,                                                                         *
+*       Joshua Land, Simon Lariz,                                                            *
 *                                                                                            *
 *   Description: This is a simple command line interpreter, that gets and runs user commands.
 *
@@ -38,6 +38,7 @@ int main()
     // variables Declaration ends here
 
     // welcome banner should include instructions to type exit to leave.
+    welcome();
     // start a loop
     while (run) 
     {
@@ -61,13 +62,10 @@ int main()
             // If youre here then you have work to do.
             inputToChar = userInput.c_str();
             system( inputToChar );
-            
-
         }
 
         // clean up the string for the next loop
         userInput = "";
-
     }
 
     return 0;
@@ -75,7 +73,9 @@ int main()
 
 void welcome()
 {
-    // TODO: Create a welcome message
+    // Print Welcome statement
+    cout << "Welcome to myShell, please enter a command to execute or enter \"exit\" to quit the program." << endl;
+
 }
 
 void prompt() 
@@ -86,4 +86,5 @@ void prompt()
 void help()
 {
     // TODO: add a help message.
+    cout << "If you need to exit the program type \"exit\", If you would like to learn more about bash and terminal commands visit https://ss64.com/bash/ for more information." << endl;
 }
