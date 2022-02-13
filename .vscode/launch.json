@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "/usr/include",
+        "/usr/local/include",
+        "${workspaceRoot}"
+      ],
+      "defines": [],
+      "intelliSenseMode": "clang-x64",
+      "browse": {
+        "path": [
+          "/usr/include",
+          "/usr/local/include",
+          "${workspaceRoot}"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      }
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [
+        ""
+      ],
+      "stopAtEntry": false,
+      "cwd": "/home/dodger/Documents/AssignmentOne",
+      "environment": [],
+      "program": "/home/dodger/Documents/AssignmentOne/build/Debug/outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "externalConsole": false,
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

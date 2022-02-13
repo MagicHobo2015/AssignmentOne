@@ -1,7 +1,7 @@
 /*********************************************************************************************
  *               Simple Console App.                                                          *
  *   Author(s):                                                                               *
- *       Joshua Land, Simon Lariz,                                                            *
+ *       Joshua Land, Simon Lariz, Jesus Contreras,                                           *
  *                                                                                            *
  *  Description: This is a simple command line interpreter, that gets and runs user commands. *
  *                                                                                            *
@@ -28,7 +28,7 @@ void help();
 void createChildThread(pid_t processID, const char *command);
 // End ProtoTypes
 
-// Stuff were using to prevent typing std over and over.
+// Stuff we're using to prevent typing std over and over.
 using std::cin;
 using std::cout;
 using std::endl;
