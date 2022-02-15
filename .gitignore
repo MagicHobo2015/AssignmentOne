@@ -1,2 +1,4 @@
 # ignore the binary
 ./main
+*.vscode
+
