@@ -11,7 +11,7 @@
 // Includes
 
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -26,6 +26,8 @@ void welcome();
 void prompt();
 void help();
 void createChildThread(pid_t processID, const char *command);
+void makeToken(char *input);
+
 // End ProtoTypes
 
 // Stuff we're using to prevent typing std over and over.
@@ -35,16 +37,20 @@ using std::endl;
 using std::getline;
 using std::string;
 
+// Variable declaration starts here
+
+char *input = NULL;
+int i;
+char *token;
+char *arr[250];
+string userInput;
+const char *inputToChar;
+pid_t pid;
+
+// variables Declaration ends here
+
 int main()
 {
-    // Variable declaration starts here
-
-    string userInput;
-    const char *inputToChar;
-    pid_t pid;
-
-    // variables Declaration ends here
-
     // welcome banner should include instructions to type exit to leave.
     welcome();
     // start a loop
@@ -117,4 +123,16 @@ void createChildThread(pid_t processID, const char *command)
         // Wait for child thread to exit or terminate before continuing
         wait(NULL);
     }
+}
+
+void makeToken(char *input)
+{
+    i = 0;
+    token = strtok(input, " ");
+    while (token != NULL)
+    {
+        arr[i++] = token;
+        token = strtok(NULL, " ");
+    }
+    arr[i] = NULL;
 }
