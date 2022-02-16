@@ -9,17 +9,30 @@
  *                                                                                            *
  *********************************************************************************************/
 
-// Includes
 
+/*********************************************************************************************
+ *               Simple Console App.                                                          *
+ *   Author(s):                                                                               *
+ *       Joshua Land, Simon Lariz, Jesus Contreras, Quan Duong                                *
+ *                                                                                            *
+ *  Description: This is a simple command line interpreter, that gets and runs user commands. *
+ *                                                                                            *
+ *                                                                                            *
+ *********************************************************************************************/
+
+// Includes
+#include <array>
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
+#include <sstream>
 #include <vector>
+
 // End Includes
 
 // Start ProtoTypes
@@ -27,8 +40,7 @@ void welcome();
 void prompt();
 void help();
 void createChildThread(pid_t processID, const char *command);
-void makeToken(char *input);
-
+bool inVector(std::string command, std::array<std::string, 7> validCommands);
 // End ProtoTypes
 
 // Stuff we're using to prevent typing std over and over.
@@ -38,32 +50,18 @@ using std::endl;
 using std::getline;
 using std::string;
 
-// Variable declaration starts here
-
-char *input = NULL;
-int i;
-char *token;
-char *arr[250];
-string userInput;
-const char *inputToChar;
-pid_t pid;
-
-// variables Declaration ends here
-
 int main()
 {
+    // Variable declaration starts here
+    std::array<std::string, 7> validCommands = {"ls", "man", "df", "path", "ps", "echo", "ping"};
+    string userInput;
+    const char *inputToChar;
+    pid_t pid;
+
+    // variables Declaration ends here
+
     // welcome banner should include instructions to type exit to leave.
     welcome();
-
-    std::vector<string> unixVector;
-    unixVector.push_back("Ls");
-    unixVector.push_back("man");
-    unixVector.push_back("df");
-    unixVector.push_back("path");
-    unixVector.push_back("ps");
-    unixVector.push_back("echo");
-    unixVector.push_back("ping");
-
     // start a loop
     while (1)
     {
@@ -84,14 +82,12 @@ int main()
             // If youre here the user needs help
             help();
         }
-        else
+        else if (inVector(userInput, validCommands))
         {
-            if(fgets(userInput, unixVector))
-            {
-                inputToChar = userInput.c_str();
-                // Call createChildThread
-                createChildThread(pid, inputToChar);
-            }
+            // If youre here then you have work to do.
+            inputToChar = userInput.c_str();
+            // Call createChildThread
+            createChildThread(pid, inputToChar);   
         }
 
         // Clean up the string for the next loop
@@ -138,33 +134,27 @@ void createChildThread(pid_t processID, const char *command)
     }
 }
 
-bool fgets(string input, std::vector<string> aVector)
+// this will check if the command is inside the vector
+bool inVector(std::string command, std::array<std::string, 7> validCommands)
 {
-    bool tOrF;
-    char* token = strtok(input, " ");
-    
-    for(int i = 0; i < aVector.size(); ++i)
+    // to hold the command
+    std::stringstream sstream(command);
+    string isolatedCommand;
+
+    // first get just the command
+    std::getline(sstream, isolatedCommand, ' ');
+
+    // now check if its in the list
+    for (int i = 0; i < validCommands.size(); i++)
     {
-        if(token == aVector.at(i))
+        if(isolatedCommand == validCommands[i])
         {
-            tOrF = true;
+            // it is in the list
+            return true;
         }
     }
-    return tOrF;
+    // if youre here, your command isnt in the list
+    cout << "Invalid Command " << std::endl;
+    return false;
 }
 
-<<<<<<< HEAD
-=======
-
-void makeToken(char *input)
-{
-    i = 0;
-    token = strtok(input, " ");
-    while (token != NULL)
-    {
-        arr[i++] = token;
-        token = strtok(NULL, " ");
-    }
-    arr[i] = NULL;
-}
->>>>>>> ca923c63bd118251d7b43d3262d48698cf42ef03
