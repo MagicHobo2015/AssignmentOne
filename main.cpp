@@ -1,3 +1,4 @@
+
 /*********************************************************************************************
  *               Simple Console App.                                                          *
  *   Author(s):                                                                               *
@@ -18,7 +19,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
-
+#include <vector>
 // End Includes
 
 // Start ProtoTypes
@@ -53,6 +54,16 @@ int main()
 {
     // welcome banner should include instructions to type exit to leave.
     welcome();
+
+    std::vector<string> unixVector;
+    unixVector.push_back("Ls");
+    unixVector.push_back("man");
+    unixVector.push_back("df");
+    unixVector.push_back("path");
+    unixVector.push_back("ps");
+    unixVector.push_back("echo");
+    unixVector.push_back("ping");
+
     // start a loop
     while (1)
     {
@@ -75,10 +86,12 @@ int main()
         }
         else
         {
-            // If youre here then you have work to do.
-            inputToChar = userInput.c_str();
-            // Call createChildThread
-            createChildThread(pid, inputToChar);
+            if(fgets(userInput, unixVector))
+            {
+                inputToChar = userInput.c_str();
+                // Call createChildThread
+                createChildThread(pid, inputToChar);
+            }
         }
 
         // Clean up the string for the next loop
@@ -124,6 +137,22 @@ void createChildThread(pid_t processID, const char *command)
         wait(NULL);
     }
 }
+
+bool fgets(string input, std::vector<string> aVector)
+{
+    bool tOrF;
+    char* token = strtok(input, " ");
+    
+    for(int i = 0; i < aVector.size(); ++i)
+    {
+        if(token == aVector.at(i))
+        {
+            tOrF = true;
+        }
+    }
+    return tOrF;
+}
+
 <<<<<<< HEAD
 =======
 
